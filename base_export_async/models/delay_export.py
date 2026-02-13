@@ -89,18 +89,14 @@ class DelayExport(models.Model):
         export_record = self.sudo().create({"user_ids": [(6, 0, users.ids)]})
 
         name = "{}.{}".format(model_name, export_format)
-        attachment = (
-            self.env["ir.attachment"]
-            .sudo()
-            .create(
-                {
-                    "name": name,
-                    "datas": base64.b64encode(content),
-                    "type": "binary",
-                    "res_model": self._name,
-                    "res_id": export_record.id,
-                }
-            )
+        attachment = self.env["ir.attachment"].create(
+            {
+                "name": name,
+                "datas": base64.b64encode(content),
+                "type": "binary",
+                "res_model": self._name,
+                "res_id": export_record.id,
+            }
         )
 
         url = "{}/web/content/ir.attachment/{}/datas/{}?download=true".format(
@@ -108,10 +104,6 @@ class DelayExport(models.Model):
             attachment.id,
             attachment.name,
         )
-
-        if any(user.has_group("base.group_portal") for user in users):
-            attachment.generate_access_token()
-            url += f"&access_token={attachment.access_token}"
 
         time_to_live = (
             self.env["ir.config_parameter"].sudo().get_param("attachment.ttl", 7)

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-01-05 19:43+0000\n"
+"PO-Revision-Date: 2024-02-19 14:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: queue_job
 #: model_terms:ir.ui.view,arch_db:queue_job.view_queue_job_form
@@ -174,7 +174,6 @@ msgstr "Data creazione"
 
 #. module: queue_job
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_channel__create_uid
-#: model:ir.model.fields,field_description:queue_job.field_queue_job_lock__create_uid
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_cancelled__create_uid
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_done__create_uid
 #: model:ir.model.fields,field_description:queue_job.field_queue_requeue_job__create_uid
@@ -182,13 +181,7 @@ msgid "Created by"
 msgstr "Creato da"
 
 #. module: queue_job
-#: model_terms:ir.ui.view,arch_db:queue_job.view_queue_job_search
-msgid "Created date"
-msgstr "Data creazione"
-
-#. module: queue_job
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_channel__create_date
-#: model:ir.model.fields,field_description:queue_job.field_queue_job_lock__create_date
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_cancelled__create_date
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_done__create_date
 #: model:ir.model.fields,field_description:queue_job.field_queue_requeue_job__create_date
@@ -235,7 +228,6 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:queue_job.field_queue_job__display_name
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_channel__display_name
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_function__display_name
-#: model:ir.model.fields,field_description:queue_job.field_queue_job_lock__display_name
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_cancelled__display_name
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_done__display_name
 #: model:ir.model.fields,field_description:queue_job.field_queue_requeue_job__display_name
@@ -366,7 +358,6 @@ msgstr "Ha un messaggio"
 #: model:ir.model.fields,field_description:queue_job.field_queue_job__id
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_channel__id
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_function__id
-#: model:ir.model.fields,field_description:queue_job.field_queue_job_lock__id
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_cancelled__id
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_done__id
 #: model:ir.model.fields,field_description:queue_job.field_queue_requeue_job__id
@@ -387,6 +378,13 @@ msgstr "Icona per indicare un'attività eccezione."
 #: model:ir.model.fields,field_description:queue_job.field_queue_job__identity_key
 msgid "Identity Key"
 msgstr "Chiave identità"
+
+#. module: queue_job
+#. odoo-python
+#: code:addons/queue_job/models/queue_job.py:0
+#, python-format
+msgid "If both parameters are 0, ALL jobs will be requeued!"
+msgstr "Se entrambi i parametri sono 0, tutti i lavori verranno riaccodati!"
 
 #. module: queue_job
 #: model:ir.model.fields,help:queue_job.field_queue_job__message_needaction
@@ -473,6 +471,12 @@ msgid "Jobs"
 msgstr "Lavori"
 
 #. module: queue_job
+#: model:ir.actions.server,name:queue_job.ir_cron_queue_job_garbage_collector_ir_actions_server
+#: model:ir.cron,cron_name:queue_job.ir_cron_queue_job_garbage_collector
+msgid "Jobs Garbage Collector"
+msgstr "Garbage collector lavori"
+
+#. module: queue_job
 #. odoo-python
 #: code:addons/queue_job/models/queue_job.py:0
 #, python-format
@@ -485,25 +489,9 @@ msgid "Kwargs"
 msgstr "Kwargs"
 
 #. module: queue_job
-#: model_terms:ir.ui.view,arch_db:queue_job.view_queue_job_search
-msgid "Last 24 hours"
-msgstr "Ultime 24 ore"
-
-#. module: queue_job
-#: model_terms:ir.ui.view,arch_db:queue_job.view_queue_job_search
-msgid "Last 30 days"
-msgstr "Ultimi 30 giorni"
-
-#. module: queue_job
-#: model_terms:ir.ui.view,arch_db:queue_job.view_queue_job_search
-msgid "Last 7 days"
-msgstr "Ultimi 7 giorni"
-
-#. module: queue_job
 #: model:ir.model.fields,field_description:queue_job.field_queue_job____last_update
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_channel____last_update
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_function____last_update
-#: model:ir.model.fields,field_description:queue_job.field_queue_job_lock____last_update
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_cancelled____last_update
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_done____last_update
 #: model:ir.model.fields,field_description:queue_job.field_queue_requeue_job____last_update
@@ -512,7 +500,6 @@ msgstr "Ultima modifica il"
 
 #. module: queue_job
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_channel__write_uid
-#: model:ir.model.fields,field_description:queue_job.field_queue_job_lock__write_uid
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_cancelled__write_uid
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_done__write_uid
 #: model:ir.model.fields,field_description:queue_job.field_queue_requeue_job__write_uid
@@ -521,7 +508,6 @@ msgstr "Ultimo aggiornamento di"
 
 #. module: queue_job
 #: model:ir.model.fields,field_description:queue_job.field_queue_job_channel__write_date
-#: model:ir.model.fields,field_description:queue_job.field_queue_job_lock__write_date
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_cancelled__write_date
 #: model:ir.model.fields,field_description:queue_job.field_queue_jobs_to_done__write_date
 #: model:ir.model.fields,field_description:queue_job.field_queue_requeue_job__write_date
@@ -678,7 +664,6 @@ msgstr "In attesa"
 
 #. module: queue_job
 #: model:ir.model.fields,field_description:queue_job.field_queue_job__priority
-#: model_terms:ir.ui.view,arch_db:queue_job.view_queue_job_search
 msgid "Priority"
 msgstr "Priorità"
 
@@ -689,14 +674,8 @@ msgstr "Coda"
 
 #. module: queue_job
 #: model:ir.model,name:queue_job.model_queue_job
-#: model:ir.model.fields,field_description:queue_job.field_queue_job_lock__queue_job_id
 msgid "Queue Job"
 msgstr "Lavoro in coda"
-
-#. module: queue_job
-#: model:ir.model,name:queue_job.model_queue_job_lock
-msgid "Queue Job Lock"
-msgstr "Blocco coda lavoro"
 
 #. module: queue_job
 #. odoo-python
@@ -922,11 +901,6 @@ msgstr ""
 "Tempo in secondi richiesto per eseguire il lavoro. Medio quando raggruppati."
 
 #. module: queue_job
-#: model_terms:ir.ui.view,arch_db:queue_job.view_queue_job_search
-msgid "Tried many times"
-msgstr "Provato molte volte"
-
-#. module: queue_job
 #: model:ir.model.fields,help:queue_job.field_queue_job__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr "Tipo di attività eccezione sul record."
@@ -943,13 +917,13 @@ msgstr "UUID"
 msgid ""
 "Unexpected format of Related Action for {}.\n"
 "Example of valid format:\n"
-"{{\"enable\": True, \"func_name\": \"related_action_foo\", "
-"\"kwargs\" {{\"limit\": 10}}}}"
+"{{\"enable\": True, \"func_name\": \"related_action_foo\", \"kwargs"
+"\" {{\"limit\": 10}}}}"
 msgstr ""
 "Formato inaspettato di azione colegata per {}.\n"
 "Esempio di formato valido:\n"
-"{{\"enable\": True, \"func_name\": \"related_action_foo\", "
-"\"kwargs\" {{\"limit\": 10}}}}"
+"{{\"enable\": True, \"func_name\": \"related_action_foo\", \"kwargs"
+"\" {{\"limit\": 10}}}}"
 
 #. module: queue_job
 #. odoo-python
@@ -957,14 +931,12 @@ msgstr ""
 #, python-format
 msgid ""
 "Unexpected format of Retry Pattern for {}.\n"
-"Example of valid formats:\n"
-"{{1: 300, 5: 600, 10: 1200, 15: 3000}}\n"
-"{{1: (1, 10), 5: (11, 20), 10: (21, 30), 15: (100, 300)}}"
+"Example of valid format:\n"
+"{{1: 300, 5: 600, 10: 1200, 15: 3000}}"
 msgstr ""
-"Formatto inatteso dello schema del nuovo tentativo per {}.\n"
-"Esempio di formati validi:\n"
-"{{1: 300, 5: 600, 10: 1200, 15: 3000}}\n"
-"{{1: (1, 10), 5: (11, 20), 10: (21, 30), 15: (100, 300)}}"
+"Formato inaspettato di schema tentativo per {}.\n"
+"Esempio di formato valido:\n"
+"{{1: 300, 5: 600, 10: 1200, 15: 3000}}"
 
 #. module: queue_job
 #: model:ir.model.fields,field_description:queue_job.field_queue_job__user_id
@@ -986,20 +958,3 @@ msgstr "Procedura guidata per riaccodare una selezione di lavori"
 #: model:ir.model.fields,field_description:queue_job.field_queue_job__worker_pid
 msgid "Worker Pid"
 msgstr "PID worker"
-
-#, python-format
-#~ msgid "If both parameters are 0, ALL jobs will be requeued!"
-#~ msgstr "Se entrambi i parametri sono 0, tutti i lavori verranno riaccodati!"
-
-#~ msgid "Jobs Garbage Collector"
-#~ msgstr "Garbage collector lavori"
-
-#, python-format
-#~ msgid ""
-#~ "Unexpected format of Retry Pattern for {}.\n"
-#~ "Example of valid format:\n"
-#~ "{{1: 300, 5: 600, 10: 1200, 15: 3000}}"
-#~ msgstr ""
-#~ "Formato inaspettato di schema tentativo per {}.\n"
-#~ "Esempio di formato valido:\n"
-#~ "{{1: 300, 5: 600, 10: 1200, 15: 3000}}"

@@ -256,7 +256,6 @@ class JobsTrap:
         if not job.identity_key or all(
             j.identity_key != job.identity_key for j in self.enqueued_jobs
         ):
-            self._prepare_context(job)
             self.enqueued_jobs.append(job)
 
             patcher = mock.patch.object(job, "store")
@@ -274,13 +273,6 @@ class JobsTrap:
             )
         )
         return job
-
-    def _prepare_context(self, job):
-        # pylint: disable=context-overridden
-        job_model = job.job_model.with_context({})
-        field_records = job_model._fields["records"]
-        # Filter the context to simulate store/load of the job
-        job.recordset = field_records.convert_to_write(job.recordset, job_model)
 
     def __enter__(self):
         return self
@@ -436,7 +428,7 @@ class OdooDocTestCase(doctest.DocTestCase):
 
     def setUp(self):
         """Log an extra statement which test is started."""
-        super().setUp()
+        super(OdooDocTestCase, self).setUp()
         logging.getLogger(__name__).info("Running tests for %s", self._dt_test.name)
 
 
